@@ -19,6 +19,7 @@ int _strcmp(char *s1, char *s2);
 char *_strdup(const char *str);
 char *_strcat(char *dest, const char *src);
 char* _strchr(const char* str, int character);
+char *_strcat3(const char *str1, const char *str2, const char *str3);
 
 int lineop(ssize_t line, char *input);
 

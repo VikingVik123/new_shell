@@ -76,3 +76,26 @@ int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
+
+/**
+ * _strcat3 - Concatenate three strings
+ * @str1: The first string
+ * @str2: The second string
+ * @str3: The third string
+ * Return: A pointer to the concatenated string, or NULL on failure
+ */
+char *_strcat3(const char *str1, const char *str2, const char *str3)
+{
+	int len1 = _strlen(str1);
+	int len2 = _strlen(str2);
+	int len3 = _strlen(str3);
+	char *result = malloc(len1 + len2 + len3 + 1);
+
+	if (!result)
+		return (NULL); /* Memory allocation failed */
+
+	_strcpy(result, str1);
+	_strcat(result, str2);
+	_strcat(result, str3);
+	return (result);
+}
