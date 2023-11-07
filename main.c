@@ -24,7 +24,6 @@ int main(int ac, char **av, char **environ)
             		free(input);
             		break;
         	}
-
         	argv = parse_input(input);
 
         	if (argv != NULL)
@@ -44,13 +43,10 @@ int main(int ac, char **av, char **environ)
             			}
 				else
 					perror("command not found");
+				free(argv);
 			}
         	}
 
-        	free(input);
-        	free(argv);
-        	input = NULL;
-        	argv = NULL;
     	}
 
     return (0);

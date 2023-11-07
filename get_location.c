@@ -6,11 +6,9 @@
  */
 char *search_in_path(const char *command, char **environ)
 {
-	char *path_copy, *path_token;
-	struct stat st;
-
+	char *path_copy, *path_token, *file_path;
 	char *path = _getenv("PATH", environ);
-	
+
 	if (path == NULL)
 		return (NULL); /* PATH environment variable not set */
 
@@ -23,13 +21,13 @@ char *search_in_path(const char *command, char **environ)
 
 	while (path_token != NULL)
 	{
-		char *file_path = _strcat3(path_token, "/", command);
+		file_path = _strcat3(path_token, "/", command);
 
-		if (file_path && stat(file_path, &st) == 0 && st.st_mode & S_IXUSR)
+		if (access(file_path, X_OK) == 0)
 		{
 			free(path_copy);
 			return (file_path); /* Found executable in the path */
-		}
+        	}
 		free(file_path);
 		path_token = strtok(NULL, ":");
 	}
